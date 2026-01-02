@@ -1,5 +1,5 @@
 # shaktishali-password
-A Python GUI application for checking password strength with strict security standards.
+A Python GUI application for checking your password strength enforcing strict security standards.
 
 ## Features
 - Real-time password strength analysis
