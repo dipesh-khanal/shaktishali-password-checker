@@ -22,7 +22,7 @@ class PasswordChecker:
             # Get the directory where this script is located
 
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            file_path = os.path.join(script_dir, 'common_passwords.txt')
+            file_path = os.path.join(script_dir, 'data', 'common_passwords.txt')
 
             with open(file_path, 'r') as file:  # Read mode..
                 for line in file:
@@ -137,8 +137,22 @@ class PasswordChecker:
     
 
 
+    def check_common_password(self, password):
+        # 7th check: Whether the password is common or not...
+        # The argument is password(str) which is simply the password we're checking.
+        # It returns tuple: (bool, str) - (is_valid, message).
+
+        if not self.common_passwords:
+            return True, "Common password check skipped (no file)"
+        if password.lower() in self.common_passwords:
+            return False, "✗ This is a commonly used password (not secure)"   
+        else:
+            return True, "✓ Not a common password" 
+
+
+
     def check_repeated_characters(self, password):
-        # 7th check: Whether there are characters repeated consecutively more than twice in password or not...
+        # 8th check: Whether there are characters repeated consecutively more than twice in password or not...
         # The argument is password(str) which is simply the password we're checking.
         # It returns tuple: (bool, str) - (is_valid, message).
 
